@@ -1,0 +1,49 @@
+[Setup]
+
+
+
+
+;DEBEN DE GENERAR OTRO ID PARA QUE NO SE CONFUNDA CON OTRA INSTALACION
+
+
+
+
+AppId={{076CE02D-6C19-4C67-8F08-78A553968C63}
+AppName=INSTALADOR
+AppVersion=2.2   
+;AppVerName=INSTALADOR
+AppPublisher=Instalador Ejemplo
+AppPublisherURL=http://julius555.blogspot.com
+AppSupportURL=http://julius555.blogspot.com
+AppUpdatesURL=http://julius555.blogspot.com
+;CREAR UN DIRECTORIO PARA LA APLICACION
+CreateAppDir=no
+;DIRECTORIO DE SALIDA
+OutputDir=.\
+
+;NOMBRE BASE DEL ARCHIVO
+OutputBaseFilename=Aetius Integral 2.4
+;HERRAMIENTA DE COMPRESION
+Compression=lzma
+SolidCompression=yes
+
+[Languages]
+Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
+[Files]
+
+;NOTA: CUANDO EL SYSTEMA SEA DE 64 BITS SE DEVERAN PASAR Y REGISTRAR LAS LIBRERIAS A LA CARPETA DE SYSWOW64
+
+;      CUANDO EL SISTEMA SEA DE 32 BITS SE DEVERAN PASAR Y REGISTRAR LAS LIBRERIAS A LA CARPETA DE SYSTEM32  
+
+;EN ESTA LINEA ENVIA TODAS LAS LIBRERIAS DLL A LA CARPETA DE SYSTEM32 Y LAS REGISTRA
+Source: "*.dll"; DestDir: "{sys}"; Flags: onlyifdoesntexist regserver 32bit noregerror
+
+;EN ESTA LINEA ENVIA TODAS LAS LIBRERIAS DLL A LA CARPETA DE SYSWOW64 Y LAS REGISTRA, ES PARA CUANDO 
+;EL SISTEMA OPERATIVO SEA DE 64 BITS
+Source: "*.dll"; DestDir: "{sys}"; Flags: onlyifdoesntexist regserver 64bit noregerror; Check: IsWin64
+;EN ESTAS DOS LINEAS AL IGUAL QUE LAS ULTIMAS DOS REGISTRAS LAS LIBRERIAS TANTO EN SYSTEM32 COMO EN SYSWOW64
+
+;CON LA DIFERENCIA DE QUE EN ESTA SE PASARAN LOS ARCHIVOS 0CX
+
+Source: "*.ocx"; DestDir: "{sys}"; Flags: onlyifdoesntexist regserver 32bit noregerror
+Source: "*.ocx"; DestDir: "{sys}"; Flags: onlyifdoesntexist regserver 64bit noregerror; Check: IsWin64
